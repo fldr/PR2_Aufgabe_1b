@@ -32,6 +32,7 @@ public class Porsche911GT2RS extends JGObject{
     public double speedMax; // [m/s]
     
     public double proplevel; // Druck Gaspedal (0..1)
+    public double brakeProplevel; // Bremspedal
     public double powerProp; // Anteil maximale Leistung [W]
     public double forcePropMax; // Maximale Vortriebskraft[kg*m/s^-2]
     public double forcePropAbs; // [kg*m/s^-2]
@@ -42,7 +43,7 @@ public class Porsche911GT2RS extends JGObject{
     public double acc; // Beschleunigung [m/s^-2]
     public double traction = DRY;        //Bodenhaftung (um welchen Faktor wird Kraft umgesetzt) (DEFAULT)
 
-    public double pos_hebel = 0; // 0 - 100 [%]
+    
     public boolean absState;
     public boolean asrState;
     
@@ -95,29 +96,20 @@ public class Porsche911GT2RS extends JGObject{
     }
 
     public void step(double deltaTime, double proplevel, double brakeProplevel) {
-
+      
         if (speed < SPEEDMIN) {
             this.speed = SPEEDMIN;
         }
         
-        if (proplevel > brakeProplevel)
-        {
+
         powerProp = proplevel * powerPropMax;
         forcePropAbs = Math.min(forcePropMax, powerProp / speed);
         forceProp = forcePropAbs * Math.signum(proplevel);
         forceDrag = (dragConst * (speed * speed) * Math.signum(-speed));
         force = forceProp + forceDrag;
+        
+        
         acc = force / mass;
-        }
-        else{
-        powerProp = -brakeProplevel * powerPropMax;
-        forcePropAbs = Math.min(forcePropMax, powerProp / speed);
-        forceProp = forcePropAbs * Math.signum(proplevel);
-        forceDrag = (dragConst * (speed * speed) * Math.signum(-speed));
-        force = forceProp + forceDrag;
-        acc = force / mass;    
-        }
-
         speed = speed + (acc * deltaTime);
         pos = pos + (speed * deltaTime);
         time = time + deltaTime;

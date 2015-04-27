@@ -122,19 +122,20 @@ public class Simulation extends JGEngine {
          int xoff = 100, yoff = 20;
          
          // HUD Info
-         drawString(("Speed: " + Math.round(porsche.speed) + " km/h"), xoff + 130, yoff + 0, JGFont.BOLD, new JGFont("Arial",1,14), JGColor.black);
-         drawString(("Position: " + Math.round(porsche.pos)+ " m"), xoff + 130, yoff + 30, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.black);
-         drawString(("Time: " + Math.round(porsche.time)+ " s"), xoff + 0, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.black);
-         drawString(("ACC: " + Math.round(porsche.acc)+ " m/s2"), xoff + 250, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.black);
+         drawString(("Speed: " + Math.round(porsche.speed) + " km/h"), xoff + 130, yoff + 0, JGFont.BOLD, new JGFont("Arial",1,14), JGColor.yellow);
+         drawString(("Position: " + Math.round(porsche.pos)+ " m"), xoff + 130, yoff + 30, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.yellow);
+         drawString(("Time: " + Math.round(porsche.time)+ " s"), xoff + 0, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.yellow);
+         drawString(("ACC: " + Math.round(porsche.acc)+ " m/s2"), xoff + 250, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.yellow);
          
+         // Gas
          drawString(("Level: "), xoff + 520, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD,10), JGColor.yellow);
          drawLine( xoff + 500, yoff + 20, xoff + 700, yoff + 20, 13, JGColor.white);
+         drawLine( xoff + 500, yoff + 20, xoff + (porsche.proplevel * 200) + 500, yoff + 20, 13, new JGColor(0x95,0x00,0x2B)); 
          
-         
-         // Brake
+         // Bremse
          drawString(("Brake: "), xoff + 520, yoff + 40, 1, new JGFont("Arial", JGFont.BOLD,10), JGColor.yellow);
          drawLine( xoff + 500, yoff + 60, xoff + 700, yoff + 60, 13, JGColor.white);
-
+         drawLine( xoff + 500, yoff + 60, xoff + (porsche.brakeProplevel * 200) + 500, yoff + 60, 13, new JGColor(0x9,0x69,0xA2));
           
          // Steuerungsinfo
          drawString(("Gas: Up // Bremse: Shift // ABS 1(an)/2(aus)  // ASR 3(an)/4(aus)  //  "), 170, 560, 0, new JGFont("Arial", JGFont.BOLD,10), JGColor.yellow);
