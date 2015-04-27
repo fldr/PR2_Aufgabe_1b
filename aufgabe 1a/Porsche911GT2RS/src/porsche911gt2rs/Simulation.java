@@ -7,7 +7,7 @@ import jgame.platform.JGEngine;
 
 public class Simulation extends JGEngine {
 
-    private double lastFrameTime;
+    private double lastFrameTime = 0.0;
     private Porsche911GT2RS porsche;
     
         // Gas- & Bremspedal
@@ -67,7 +67,7 @@ public class Simulation extends JGEngine {
         
         // Zeitdifferenz berechnen
         double brakelevel, level, now = System.currentTimeMillis() / 1000.0;
-        double diff = (lastFrameTime == 0) ? lastFrameTime : (now - lastFrameTime);
+        double diff = (lastFrameTime == 0.0) ? lastFrameTime : (now - lastFrameTime);
         
         // Reset wenn -R- gedrückt
         if (getKey(82)) {porsche.reset();}

@@ -64,9 +64,9 @@ public class Porsche911GT2RS{
         
         //super("Porsche911GT2RS", true, 0, 255, 1, "porsche");
         
-        this.mass = mass; // kg
-        this.powerPropMax = powerPropMax * 1000.0; // W
-        this.speedMax = speedMax / KM_PER_HOUR_IN_M_PER_SEC; // m/s
+        this.mass = mass/10.0; // kg
+        this.powerPropMax = powerPropMax*1000 ; // W
+        this.speedMax = speedMax; // KM_PER_HOUR_IN_M_PER_SEC; // m/s
         this.ground = ground;
         
         traction = ACCEARTH * ground; // beschl * factor = beschl
@@ -113,7 +113,7 @@ public class Porsche911GT2RS{
         
         forcePropBrakeB   = mass*ACCEARTH*this.brakeProplevel*Math.signum(-speed);// Motorleistung Brutto
         powerPropB = powerPropMax*this.proplevel;
-        forcePropB = powerPropB / speed;
+        forcePropB = powerPropB / Math.abs(speed);
         forceOnWheel = forcePropB + forcePropBrakeB;
         forceB = forceOnWheel + forceDrag; 
 
