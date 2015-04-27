@@ -43,7 +43,8 @@ public class Porsche911GT2RS extends JGObject{
     public double traction = DRY;        //Bodenhaftung (um welchen Faktor wird Kraft umgesetzt) (DEFAULT)
 
     public double pos_hebel = 0; // 0 - 100 [%]
-
+    public boolean absState;
+    public boolean asrState;
     
     public Porsche911GT2RS(double mass, double powerPropMax, double speedMax) {
         
@@ -71,54 +72,15 @@ public class Porsche911GT2RS extends JGObject{
 //        }
 //    }
 
-//    // SELECTORS
-//    public double getMass() {
-//        return mass;
-//    }
-//
-//    public double getPowerPropMax() {
-//        return powerPropMax;
-//    }
-//
-//    public double getSpeedMax() {
-//        return speedMax;
-//    }
-//
-//    public double getTime() {
-//        return time;
-//    }
-//
-//    private void setTime(double time) {
-//        this.time = time;
-//    }
-//
-//    public double getPos() {
-//        return pos;
-//    }
-//
-//    private void setPos(double pos) {
-//        this.pos = pos;
-//    }
-//
-//    public double getSpeed() {
-//        return speed;
-//    }
-//
-//    private void setSpeed(double speed) {
-//        this.speed = speed;
-//    }
-//
-//    public double getProplevel() {
-//        return proplevel;
-//    }
-//
-//    private void setProplevel(double proplevel) {
-//        this.proplevel = proplevel;
-//    }
 
     
+        public void setGround(double ground){
+        traction = ground; // Bodenbehaftung ändern
+        forcePropMax = mass * ACCEARTH * traction; // Maximale Vortriebskraft[kg*m/s^-2]
+    }
     
-    public double getGround(){return traction;}
+    public void setABS(boolean value) { absState = value; }
+    public void setASR(boolean value) { asrState = value; }
     
     //OPERATIONS
     public void set(double time, double pos, double speed, double proplevel) {
@@ -132,35 +94,41 @@ public class Porsche911GT2RS extends JGObject{
         set(0.0, 0.0, 0.0, 0.0);
     }
 
-    public void step(double deltaTime, double proplevel) {
+    public void step(double deltaTime, double proplevel, double brakeProplevel) {
 
         if (speed < SPEEDMIN) {
             this.speed = SPEEDMIN;
         }
+        
+        if (proplevel > brakeProplevel)
+        {
         powerProp = proplevel * powerPropMax;
         forcePropAbs = Math.min(forcePropMax, powerProp / speed);
         forceProp = forcePropAbs * Math.signum(proplevel);
         forceDrag = (dragConst * (speed * speed) * Math.signum(-speed));
         force = forceProp + forceDrag;
         acc = force / mass;
-
-        pos_hebel = 0;
+        }
+        else{
+        powerProp = -brakeProplevel * powerPropMax;
+        forcePropAbs = Math.min(forcePropMax, powerProp / speed);
+        forceProp = forcePropAbs * Math.signum(proplevel);
+        forceDrag = (dragConst * (speed * speed) * Math.signum(-speed));
+        force = forceProp + forceDrag;
+        acc = force / mass;    
+        }
 
         speed = speed + (acc * deltaTime);
         pos = pos + (speed * deltaTime);
         time = time + deltaTime;
     }
     
-    public void setGround(double ground){
-        traction = ground; // Bodenbehaftung ändern
-        forcePropMax = mass * ACCEARTH * traction; // Maximale Vortriebskraft[kg*m/s^-2]
-    }
-    
-  
 
     @Override
     public String toString() {
         return "Porsche911GT2RS{" + time + " Sekunden " + "Pos = " + Math.round(pos) + " m, Speed=" + Math.round(speed * KM_PER_HOUR_IN_M_PER_SEC) + "km/h Force=" + Math.round(force) + ", acc=" + Math.round(acc) + '}';
     }
 
+    
+    public double getGround(){return traction;}
 }

@@ -10,6 +10,10 @@ public class Simulation extends JGEngine {
     private double lastFrameTime;
     private Porsche911GT2RS porsche;
     
+        // Gas- & Bremspedal
+    Pedal gaspedal = new Pedal(0.3,2); // Max Bremswirkung nach 0.3 S erreicht
+    Pedal bremspedal = new Pedal(0.2,0.2);
+    
         // Tilde-State
     private double tilde = 0.0;
     
@@ -69,29 +73,32 @@ public class Simulation extends JGEngine {
         // Reset wenn -R- gedrückt
         if (getKey(82)) {porsche.reset();}
         
+        // ABS/ASR steuern (ein/aus):
+        if (getKey(49)) {porsche.setABS(true);}
+        if (getKey(50)) {porsche.setABS(false);}
+        if (getKey(51)) {porsche.setASR(true);}
+        if (getKey(52)) {porsche.setASR(false);}
         
         // Untergrund ändern?
         if (getKey(81)) {porsche.setGround(1.0);}
         else if (getKey(87)) {porsche.setGround(0.7);}
         else if (getKey(69)) {porsche.setGround(0.1);}
         
-        // Hebelstände berechnen
-        //throttle.step(diff, getKey(KeyUp));
-        //brake.step(diff, getKey(KeyShift));
+        // Hebel benutzen
+        gaspedal.step(diff, getKey(KeyRight));
+        bremspedal.step(diff, getKey(KeyLeft));
         
-                // Sind wir abgeflogen? Steuerung sperren
+        // Sind wir abgeflogen? Steuerung sperren
         if (tilde == 0.0) {
-            level = 1.0;
-            brakelevel = 0.0;
-            //level = throttle.getLevel();
-            //brakelevel = brake.getLevel();
+            level = gaspedal.getLevel();
+            brakelevel = bremspedal.getLevel();
         } else {
             level = 0.0;
             brakelevel = 0.0;
         }
         
         // Berechnung des Autos aktualisieren
-        porsche.step(diff , 1.0);
+        porsche.step(diff , level, brakelevel);
         
         // Zeitstempel auf aktuelle Systemzeit setzen
         lastFrameTime = now;
@@ -113,6 +120,12 @@ public class Simulation extends JGEngine {
          
          // Offset für HUD (position)
          int xoff = 100, yoff = 20;
+         
+         // HUD Info
+         drawString(("Speed: " + Math.round(porsche.speed) + " km/h"), xoff + 130, yoff + 0, JGFont.BOLD, new JGFont("Arial",1,14), JGColor.black);
+         drawString(("Position: " + Math.round(porsche.pos)+ " m"), xoff + 130, yoff + 30, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.black);
+         drawString(("Time: " + Math.round(porsche.time)+ " s"), xoff + 0, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.black);
+         drawString(("ACC: " + Math.round(porsche.acc)+ " m/s2"), xoff + 250, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.black);
          
          drawString(("Level: "), xoff + 520, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD,10), JGColor.yellow);
          drawLine( xoff + 500, yoff + 20, xoff + 700, yoff + 20, 13, JGColor.white);
