@@ -1,0 +1,7 @@
+MIDlet-1: Ogrotron, , examples.ogrotron.Ogrotron
+MIDlet-Name: Ogrotron
+MIDlet-Jar-URL: OgrotronMidlet.jar
+MIDlet-Vendor: JGame
+MIDlet-Version: 1.2
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0

@@ -1,0 +1,47 @@
+rm -R classes-examples-tmp
+mkdir classes-examples-tmp
+rm -R classes-examples
+mkdir classes-examples
+
+echo Using WTK_HOME=${WTK_HOME}
+
+PREVERIFY=${WTK_HOME}/bin/preverify
+CLDCAPI=${WTK_HOME}/lib/cldcapi11.jar
+MIDPAPI=${WTK_HOME}/lib/midpapi20.jar
+
+APPNAME=MatrixMinerMidlet
+MANIFESTNAME=manifests/manifest_midp_matrixminer
+
+javac -bootclasspath ${CLDCAPI}:${MIDPAPI} -source 1.3 -target 1.3 -classpath classes-midp examples/matrixminer/MatrixMiner.java examples/StdMaze*.java -d classes-examples-tmp
+
+${PREVERIFY} -classpath ${CLDCAPI}:${MIDPAPI}:classes-midp -d classes-examples  classes-examples-tmp
+
+
+cp examples/matrixminer/matrix_miner.tbl classes-examples/examples/matrixminer/
+cp examples/matrixminer/matrixminer-splash.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/train16-purple.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/killertomato16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/dragon16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/wasp16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/goodie-circle-tr.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/myexplob16-tr.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/ballbullet-tr.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/font234-red-tr.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/iceblock-16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/iceblock-purple-yellow-16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/iceblock-red-16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/iceblock-orange-16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/iceblock-yellow-16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/iceblock-green-16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/iceblock-cyan-16.gif classes-examples/examples/matrixminer/
+cp examples/matrixminer/*.wav classes-examples/examples/matrixminer/
+
+echo "Jaring preverified class files..."
+jar cmf ${MANIFESTNAME} ${APPNAME}.jar -C classes-examples examples -C classes-midp jgame
+
+echo "Update MIDlet-Jar-Size in jad..."
+
+stat -c '%s' ${APPNAME}.jar | xargs echo 'MIDlet-Jar-Size:' | \
+        cat ${MANIFESTNAME} /dev/stdin >${APPNAME}.jad
+
+

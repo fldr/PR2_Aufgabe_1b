@@ -1,0 +1,30 @@
+echo "parameter 1: jar filename without .jar extension --> $1.jar"
+echo "parameter 2: manifest filename                   --> $2"
+echo "Writing to classes-midp-shrunk"
+echo ""
+echo "  Using WTK_HOME=$WTK_HOME"
+echo "  Using PROGUARD_HOME=$PROGUARD_HOME"
+echo "  Assuming proguard 3.9 or higher command line options"
+
+PREVERIFY=$WTK_HOME/bin/preverify
+CLDCAPI=$WTK_HOME/lib/cldcapi11.jar
+MIDPAPI=$WTK_HOME/lib/midpapi20.jar
+PROGUARD=$PROGUARD_HOME/lib/proguard.jar
+
+mkdir classes-midp-shrunk-tmp
+mkdir classes-midp-shrunk
+
+echo "Shrinking....."
+
+java -jar $PROGUARD -dontusemixedcaseclassnames -libraryjars $CLDCAPI -libraryjars $MIDPAPI -allowaccessmodification -overloadaggressively -defaultpackage '' -verbose -keep 'public class * extends javax.microedition.midlet.MIDlet' -injars $1.jar -outjars classes-midp-shrunk-tmp/$1.jar
+
+
+echo "Preverifying....."
+
+$PREVERIFY -classpath $CLDCAPI:$MIDPAPI:classes-midp-tmp -d classes-midp-shrunk classes-midp-shrunk-tmp/$1.jar
+
+echo "Update MIDlet-Jar-Size in jad..."
+
+stat -c '%s' classes-midp-shrunk/$1.jar | xargs echo 'MIDlet-Jar-Size:' | \
+        cat $2 /dev/stdin >classes-midp-shrunk/$1.jad
+

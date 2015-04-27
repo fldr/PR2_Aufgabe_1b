@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="ogrotron-intro.svg"
+   inkscape:export-filename="/home/schooten/Work/jgame/JGame/examples/ogrotron/ogrotron-intro.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3677">
+      <stop
+         style="stop-color:#ffc300;stop-opacity:1;"
+         offset="0"
+         id="stop3679" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="1"
+         id="stop3681" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3592">
+      <stop
+         style="stop-color:#e18598;stop-opacity:1;"
+         offset="0"
+         id="stop3594" />
+      <stop
+         style="stop-color:#9185cc;stop-opacity:1;"
+         offset="1"
+         id="stop3596" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3592"
+       id="linearGradient3598"
+       x1="246.47722"
+       y1="242.21985"
+       x2="486.47723"
+       y2="562.21985"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3677"
+       id="radialGradient5139"
+       cx="365.71875"
+       cy="301.40494"
+       fx="365.71875"
+       fy="301.40494"
+       r="85.546875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       id="filter5141"
+       inkscape:menu-tooltip="Draws a black outline around"
+       inkscape:menu="ABCs"
+       inkscape:label="Black outline"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur5143"
+         stdDeviation="2"
+         in="SourceAlpha"
+         result="result0" />
+      <feComposite
+         id="feComposite5145"
+         in2="result0"
+         result="result3"
+         operator="arithmetic"
+         in="SourceGraphic"
+         k2="1"
+         k3="10" />
+      <feComposite
+         id="feComposite5147"
+         in2="result3"
+         k2="1"
+         operator="in"
+         in="result3"
+         result="result4" />
+    </filter>
+    <inkscape:perspective
+       id="perspective2972"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3677-9"
+       id="radialGradient5139-3"
+       cx="365.71875"
+       cy="301.40494"
+       fx="365.71875"
+       fy="301.40494"
+       r="85.546875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient3677-9">
+      <stop
+         style="stop-color:#ffc300;stop-opacity:1;"
+         offset="0"
+         id="stop3679-8" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="1"
+         id="stop3681-6" />
+    </linearGradient>
+    <filter
+       id="filter5141-5"
+       inkscape:menu-tooltip="Draws a black outline around"
+       inkscape:menu="ABCs"
+       inkscape:label="Black outline"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur5143-1"
+         stdDeviation="2"
+         in="SourceAlpha"
+         result="result0" />
+      <feComposite
+         k4="0"
+         k1="0"
+         id="feComposite5145-4"
+         in2="result0"
+         result="result3"
+         operator="arithmetic"
+         in="SourceGraphic"
+         k2="1"
+         k3="10" />
+      <feComposite
+         id="feComposite5147-5"
+         in2="result3"
+         operator="in"
+         in="result3"
+         result="result4" />
+    </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3677-9"
+       id="radialGradient2984"
+       cx="365.71875"
+       cy="301.40494"
+       fx="365.71875"
+       fy="301.40494"
+       r="85.546875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient2986">
+      <stop
+         style="stop-color:#ffc300;stop-opacity:1;"
+         offset="0"
+         id="stop2988" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="1"
+         id="stop2990" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3677-9"
+       id="radialGradient2992"
+       cx="365.71875"
+       cy="301.40494"
+       fx="365.71875"
+       fy="301.40494"
+       r="85.546875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient2994">
+      <stop
+         style="stop-color:#ffc300;stop-opacity:1;"
+         offset="0"
+         id="stop2996" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="1"
+         id="stop2998" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3677-9"
+       id="radialGradient3000"
+       cx="365.71875"
+       cy="301.40494"
+       fx="365.71875"
+       fy="301.40494"
+       r="85.546875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient3002">
+      <stop
+         style="stop-color:#ffc300;stop-opacity:1;"
+         offset="0"
+         id="stop3004" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="1"
+         id="stop3006" />
+    </linearGradient>
+    <radialGradient
+       r="85.546875"
+       fy="301.40494"
+       fx="365.71875"
+       cy="301.40494"
+       cx="365.71875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient3012"
+       xlink:href="#linearGradient3677-9"
+       inkscape:collect="always" />
+    <radialGradient
+       r="85.546875"
+       fy="301.40494"
+       fx="365.71875"
+       cy="301.40494"
+       cx="365.71875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient3014"
+       xlink:href="#linearGradient3677-9"
+       inkscape:collect="always" />
+    <radialGradient
+       r="85.546875"
+       fy="301.40494"
+       fx="365.71875"
+       cy="301.40494"
+       cx="365.71875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient3016"
+       xlink:href="#linearGradient3677-9"
+       inkscape:collect="always" />
+    <radialGradient
+       r="85.546875"
+       fy="301.40494"
+       fx="365.71875"
+       cy="301.40494"
+       cx="365.71875"
+       gradientTransform="matrix(1,0,0,0.25780822,0,223.70028)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient3018"
+       xlink:href="#linearGradient3677-9"
+       inkscape:collect="always" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="395.48187"
+     inkscape:cy="641.21831"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1309"
+     inkscape:window-height="748"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:url(#linearGradient3598);fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect2818"
+       width="240"
+       height="320"
+       x="246.47722"
+       y="242.21985" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3604"
+       style="font-size:48;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:url(#radialGradient5139);fill-opacity:1;stroke:none;font-family:Impact;-inkscape-font-specification:Impact Bold;text-anchor:middle;text-align:center;filter:url(#filter5141)"><flowRegion
+         id="flowRegion3606"
+         style="fill-opacity:1;fill:url(#radialGradient5139)"><rect
+           id="rect3608"
+           width="238.39601"
+           height="74.751289"
+           x="246.47722"
+           y="268.4838"
+           style="font-size:48px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Impact;-inkscape-font-specification:Impact Bold;fill-opacity:1;fill:url(#radialGradient5139)" /></flowRegion><flowPara
+         id="flowPara3610"
+         style="fill-opacity:1;fill:url(#radialGradient5139)">Ogrotron</flowPara></flowRoot>    <rect
+       style="fill:#ffffff;fill-opacity:0.31018521;fill-rule:nonzero;stroke:none"
+       id="rect5149"
+       width="166.63319"
+       height="92.016838"
+       x="282.98633"
+       y="350.53024"
+       ry="16.162441" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3634"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Days;-inkscape-font-specification:Days"
+       transform="translate(-1.4285714,-5.7142857)"><flowRegion
+         id="flowRegion3636"><rect
+           id="rect3638"
+           width="236.3757"
+           height="100.0051"
+           x="247.48738"
+           y="362.42801"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;font-family:Days;-inkscape-font-specification:Days" /></flowRegion><flowPara
+         id="flowPara3642">Press <flowSpan
+   style="-inkscape-font-specification:DejaVu Sans Mono Bold;font-family:DejaVu Sans Mono;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal"
+   id="flowSpan2960">*</flowSpan> or </flowPara><flowPara
+         id="flowPara5153">touch here</flowPara><flowPara
+         id="flowPara2954"> to start</flowPara></flowRoot>    <rect
+       style="fill:#ffffff;fill-opacity:0.31018519;fill-rule:nonzero;stroke:none"
+       id="rect5133"
+       width="208.09174"
+       height="67.680138"
+       x="260.61935"
+       y="468.49399"
+       ry="17.172594" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3646"
+       style="font-size:22;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black, Bold';text-anchor:middle;text-align:center"><flowRegion
+         id="flowRegion3648"><rect
+           id="rect3650"
+           width="239.40616"
+           height="74.751289"
+           x="245.46707"
+           y="472.53461"
+           style="text-anchor:middle;text-align:center;-inkscape-font-specification:'Arial Black, Bold';font-family:Arial Black;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;fill:#ffffff;fill-opacity:1;font-size:22" /></flowRegion><flowPara
+         id="flowPara3652">get more games</flowPara><flowPara
+         id="flowPara3654">at tmtg.net</flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.47512761,0,0,0.41261146,257.3145,208.96483)"
+       xml:space="preserve"
+       id="flowRoot3604-1"
+       style="font-size:48px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:url(#radialGradient3018);fill-opacity:1;stroke:none;filter:url(#filter5141-5);font-family:Impact;-inkscape-font-specification:Impact Bold"><flowRegion
+         id="flowRegion3606-0"
+         style="fill:url(#radialGradient3014);fill-opacity:1"><rect
+           id="rect3608-9"
+           width="238.39601"
+           height="74.751289"
+           x="246.47722"
+           y="268.4838"
+           style="font-size:48px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:url(#radialGradient3012);fill-opacity:1;font-family:Impact;-inkscape-font-specification:Impact Bold" /></flowRegion><flowPara
+         id="flowPara3610-0"
+         style="fill:url(#radialGradient3016);fill-opacity:1">beta</flowPara></flowRoot>  </g>
+</svg>

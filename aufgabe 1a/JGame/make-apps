@@ -1,0 +1,54 @@
+rm -R classes-examples
+mkdir classes-examples
+
+cp -R classes-jre/jgame classes-examples 
+
+echo "Compiling ..."
+
+javac -source 1.3 -target 1.3 -classpath classes-examples gamegen/*.java tutorial/*.java examples/*.java examples/nebulaalpha/*.java examples/waterworld/*.java examples/matrixminer/*.java examples/packetstorm/*.java examples/guardian/*.java examples/ogrotron/*.java examples/cavernsoffire/*.java examples/dingbats/*.java -d classes-examples
+
+echo "Copying resources ..."
+
+mkdir classes-examples/html
+mkdir classes-examples/html/grabs
+cp html/*.txt classes-examples/html 
+cp html/grabs/* classes-examples/html/grabs 
+cp -R examples/gfx classes-examples/examples/
+cp -R examples/sound classes-examples/examples/
+cp examples/*.tbl classes-examples/examples 
+cp -R examples/nebulaalpha classes-examples/examples/
+cp -R examples/waterworld classes-examples/examples/
+cp -R examples/matrixminer classes-examples/examples/
+cp -R examples/packetstorm classes-examples/examples/
+cp -R examples/guardian classes-examples/examples/
+cp -R examples/ogrotron classes-examples/examples/
+cp -R examples/cavernsoffire classes-examples/examples/
+cp -R examples/dingbats classes-examples/examples/
+cp gamegen/*.gif classes-examples/gamegen 
+cp gamegen/simplegeneratedgame.tbl classes-examples/gamegen 
+cp tutorial/*.gif classes-examples/tutorial/
+cp tutorial/*.png classes-examples/tutorial/
+cp tutorial/*.tbl classes-examples/tutorial/
+cp tutorial/*.wav classes-examples/tutorial/
+
+echo "Making jars ..."
+
+cd classes-examples
+jar cfm ../jgame-all.jar ../manifests/manifest .
+jar cf ../smallgames.jar jgame examples/*.class examples/*.tbl examples/gfx examples/sound
+jar cfm ../nebulaalpha.jar ../manifests/manifest_nebulaalpha examples/nebulaalpha jgame
+jar cfm ../waterworld.jar ../manifests/manifest_waterworld examples/waterworld jgame
+jar cfm ../matrixminer.jar ../manifests/manifest_matrixminer examples/matrixminer jgame examples/StdMaze*.class
+jar cfm ../packetstorm.jar ../manifests/manifest_packetstorm examples/packetstorm jgame
+jar cfm ../guardian.jar ../manifests/manifest_guardian examples/guardian examples/StdScoring.class jgame
+jar cf ../tutorial.jar jgame tutorial
+
+jar cfm ../jgame-gamegen.jar ../manifests/manifest_gamegen jgame examples/Std*.class gamegen/*.class gamegen/blocks*.gif gamegen/simplegeneratedgame.tbl
+cd ..
+
+echo "Compiling standalone packages ..."
+
+sh examples/ogrotron/make-jre
+sh examples/cavernsoffire/make-jre
+
+

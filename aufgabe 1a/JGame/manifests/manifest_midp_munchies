@@ -1,0 +1,7 @@
+MIDlet-1: Munchies, , examples.Munchies
+MIDlet-Name: Munchies
+MIDlet-Jar-URL: MunchiesMidlet.jar
+MIDlet-Vendor: JGame
+MIDlet-Version: 1.1
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0

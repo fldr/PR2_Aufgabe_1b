@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Call this script from the jgame root directory.
+
+# app parameters
+
+echo Using ANDROID_HOME=${ANDROID_HOME}
+
+# destination directories
+

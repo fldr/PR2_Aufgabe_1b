@@ -1,0 +1,25 @@
+rm -R classes-midp-tmp
+mkdir classes-midp-tmp
+rm -R classes-midp
+mkdir classes-midp
+
+
+echo "Making MIDP classes..."
+
+#Make sure WTK_HOME points to the WTK installation
+#WTK_HOME=~/bin/packages/WTK2.5.1
+echo "Using WTK_HOME=${WTK_HOME}"
+
+PREVERIFY=${WTK_HOME}/bin/preverify
+CLDCAPI=${WTK_HOME}/lib/cldcapi11.jar
+MIDPAPI=${WTK_HOME}/lib/midpapi20.jar
+
+javac -bootclasspath ${CLDCAPI}:${MIDPAPI} -source 1.3 -target 1.3 \
+	-classpath classes-midp-tmp src-base/jgame/*.java \
+	src-base/jgame/impl/*.java \
+	src-midp/jgame/platform/*.java -d classes-midp-tmp
+
+${PREVERIFY} -classpath ${CLDCAPI}:${MIDPAPI}:classes-midp-tmp \
+	-d classes-midp  classes-midp-tmp
+
+

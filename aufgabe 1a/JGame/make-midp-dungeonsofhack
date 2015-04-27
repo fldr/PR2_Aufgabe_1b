@@ -1,0 +1,33 @@
+rm -R classes-examples-tmp
+mkdir classes-examples-tmp
+rm -R classes-examples
+mkdir classes-examples
+
+echo Using WTK_HOME=${WTK_HOME}
+
+PREVERIFY=${WTK_HOME}/bin/preverify
+CLDCAPI=${WTK_HOME}/lib/cldcapi11.jar
+MIDPAPI=${WTK_HOME}/lib/midpapi20.jar
+
+APPNAME=DungeonsOfHackMidlet
+MANIFESTNAME=manifests/manifest_midp_dungeonsofhack
+
+javac -bootclasspath ${CLDCAPI}:${MIDPAPI} -source 1.3 -target 1.3 -classpath classes-midp examples/DungeonsOfHack.java examples/StdDungeon*.java examples/StdScoring.java -d classes-examples-tmp
+
+${PREVERIFY} -classpath ${CLDCAPI}:${MIDPAPI}:classes-midp -d classes-examples  classes-examples-tmp
+
+
+mkdir classes-examples/examples/gfx
+cp examples/dungeons_of_hack.tbl classes-examples/examples/
+cp examples/gfx/hack-logo-sm-midp.jpg classes-examples/examples/gfx/
+cp examples/gfx/dungeontiles.png classes-examples/examples/gfx/
+cp examples/gfx/colorexplo10.png classes-examples/examples/gfx/
+
+echo "Jaring preverified class files..."
+jar cmf ${MANIFESTNAME} ${APPNAME}.jar -C classes-examples examples -C classes-midp jgame
+
+echo "Update MIDlet-Jar-Size in jad..."
+
+stat -c '%s' ${APPNAME}.jar | xargs echo 'MIDlet-Jar-Size:' | \
+        cat ${MANIFESTNAME} /dev/stdin >${APPNAME}.jad
+

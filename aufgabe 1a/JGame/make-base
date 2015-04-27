@@ -1,0 +1,14 @@
+
+echo "Making JRE classes and jar..."
+
+rm -R classes-jre
+mkdir classes-jre
+
+
+javac -source 1.3 -target 1.3 -classpath $CLASSPATH:classes-jre \
+	src-base/*/*/*.java src-base/*/*.java src-jre/jgame/platform/*.java \
+	-d classes-jre
+#javac -classpath classes-base:classes-jre src-jre/jgame/gamegen/*.java -d classes-jre
+
+jar cf jgame-jre.jar -C classes-jre .
+

@@ -1,0 +1,9 @@
+MIDlet-1: SpaceRun, , examples.SpaceRun
+MIDlet-2: SpaceRunII, , examples.SpaceRunII
+MIDlet-3: SpaceRunIII, , examples.SpaceRunIII
+MIDlet-Name: SpaceRun
+MIDlet-Jar-URL: SpaceRunMidlet.jar
+MIDlet-Vendor: JGame
+MIDlet-Version: 1.1
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0

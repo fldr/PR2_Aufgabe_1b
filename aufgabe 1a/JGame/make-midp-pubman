@@ -1,0 +1,43 @@
+rm -R classes-examples-tmp
+mkdir classes-examples-tmp
+rm -R classes-examples
+mkdir classes-examples
+
+echo Using WTK_HOME=${WTK_HOME}
+
+PREVERIFY=${WTK_HOME}/bin/preverify
+CLDCAPI=${WTK_HOME}/lib/cldcapi11.jar
+MIDPAPI=${WTK_HOME}/lib/midpapi20.jar
+
+APPNAME=PubManMidlet
+MANIFESTNAME=manifests/manifest_midp_pubman
+
+javac -bootclasspath ${CLDCAPI}:${MIDPAPI} -source 1.3 -target 1.3 -classpath classes-midp examples/PubMan.java examples/StdScoring.java examples/StdMaze*.java -d classes-examples-tmp
+
+${PREVERIFY} -classpath ${CLDCAPI}:${MIDPAPI}:classes-midp -d classes-examples  classes-examples-tmp
+
+
+mkdir classes-examples/examples/gfx
+cp examples/pub_man.tbl classes-examples/examples/
+cp examples/gfx/pubman-splash.gif classes-examples/examples/gfx/
+cp examples/gfx/rollingball-tr.gif classes-examples/examples/gfx/
+cp examples/gfx/walkingbeer-tr.gif classes-examples/examples/gfx/
+cp examples/gfx/matrixwall.gif classes-examples/examples/gfx/
+cp examples/gfx/walkingbeer-blue.gif classes-examples/examples/gfx/
+cp examples/gfx/walkingbeer-black.gif classes-examples/examples/gfx/
+cp examples/gfx/walkingbeer-white.gif classes-examples/examples/gfx/
+cp examples/gfx/goodie-circle-tr.gif classes-examples/examples/gfx/
+cp examples/gfx/pacpills.gif classes-examples/examples/gfx/
+cp examples/gfx/font234-red-tr.gif classes-examples/examples/gfx/
+cp examples/gfx/revolvingdoor.gif classes-examples/examples/gfx/
+
+
+echo "Jaring preverified class files..."
+jar cmf ${MANIFESTNAME} ${APPNAME}.jar -C classes-examples examples -C classes-midp jgame
+
+echo "Update MIDlet-Jar-Size in jad..."
+
+stat -c '%s' ${APPNAME}.jar | xargs echo 'MIDlet-Jar-Size:' | \
+        cat ${MANIFESTNAME} /dev/stdin >${APPNAME}.jad
+
+

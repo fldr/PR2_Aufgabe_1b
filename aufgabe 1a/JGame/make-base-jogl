@@ -1,0 +1,19 @@
+echo "Making JRE/JOGL classes and jar..."
+
+rm -R classes-jogl
+mkdir classes-jogl
+
+# compile jre classes
+
+javac -source 1.4 -target 1.4 -classpath $CLASSPATH:classes-jogl \
+	src-base/*/*/*.java src-base/*/*.java src-jre/jgame/platform/*.java \
+	-d classes-jogl
+
+# replace classes with any classes found in jogl platform
+
+javac -source 1.4 -target 1.4 -classpath $CLASSPATH:classes-jogl \
+	src-jogl/jgame/platform/*.java \
+	-d classes-jogl
+
+jar cf jgame-jogl.jar -C classes-jogl .
+

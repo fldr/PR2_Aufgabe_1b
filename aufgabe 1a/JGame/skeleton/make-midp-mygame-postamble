@@ -1,0 +1,45 @@
+
+# destination directories
+
+DESTDIR=classes-jgame-midlet
+
+rm -R ${DESTDIR}-tmp
+mkdir ${DESTDIR}-tmp
+rm -R ${DESTDIR}
+mkdir ${DESTDIR}
+
+# wtk stuff
+
+echo Using WTK_HOME=${WTK_HOME}
+
+PREVERIFY=${WTK_HOME}/bin/preverify
+CLDCAPI=${WTK_HOME}/lib/cldcapi11.jar
+MIDPAPI=${WTK_HOME}/lib/midpapi20.jar
+
+# compile
+
+javac -bootclasspath ${CLDCAPI}:${MIDPAPI} -source 1.3 -target 1.3 -classpath classes-midp ${APPPATH}/*.java -d ${DESTDIR}-tmp
+
+${PREVERIFY} -classpath ${CLDCAPI}:${MIDPAPI}:classes-midp -d ${DESTDIR}  ${DESTDIR}-tmp
+
+cp ${APPPATH}/*.tbl ${DESTDIR}/${APPPATH}
+cp ${APPPATH}/*.png ${DESTDIR}/${APPPATH}
+cp ${APPPATH}/*.wav ${DESTDIR}/${APPPATH}
+cp ${APPPATH}/*.mid ${DESTDIR}/${APPPATH}
+
+echo 'MIDlet-1:' ${APPNAME}, , ${MAINCLASS}  >${DESTDIR}/midp_manifest
+echo 'MIDlet-Name:' ${APPNAME}              >>${DESTDIR}/midp_manifest
+echo 'MIDlet-Jar-URL:' ${JARNAME}.jar       >>${DESTDIR}/midp_manifest
+cat ${MANIFESTNAME}                         >>${DESTDIR}/midp_manifest
+
+
+echo "Jaring preverified class files..."
+
+jar cmf ${DESTDIR}/midp_manifest ${JARNAME}.jar -C ${DESTDIR} ${APPPATH} -C classes-midp jgame
+
+
+echo "Updating file size in jad..."
+
+stat -c '%s' ${JARNAME}.jar | xargs echo 'MIDlet-Jar-Size:' | \
+        cat ${DESTDIR}/midp_manifest /dev/stdin     >${JARNAME}.jad
+

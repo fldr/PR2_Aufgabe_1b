@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Call this script from the jgame root directory.
+# Ensure WTK_HOME points to your WTK root directory.
+
+# Midlet parameters. Fill in your own values here.
+
