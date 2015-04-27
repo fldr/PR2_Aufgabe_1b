@@ -15,7 +15,7 @@ public class Simulation extends JGEngine {
     Pedal bremspedal = new Pedal(0.2,0.2);
     
         // Tilde-State
-    private double tilde = 0.0;
+    private double tilde;
     
     public Simulation() {
         super();
@@ -46,9 +46,8 @@ public class Simulation extends JGEngine {
         
         
         // Porsche erstellen und initialisieren
-        porsche = new Porsche911GT2RS(1445.0,456.0,330.0);
+        porsche = new Porsche911GT2RS(1445.0,456.0,330.0,1.0);
         porsche.reset();
-        //JGObject car = new JGObject("porsche", true, 0, 0, 2, "porsche");
         
         setGameState("Wait");
     }
@@ -100,6 +99,8 @@ public class Simulation extends JGEngine {
         // Berechnung des Autos aktualisieren
         porsche.step(diff , level, brakelevel);
         
+        //drawImage(porsche.pos % pfWidth(),(porsche.abflug ? viewWidth()/45 +50*Math.cos(texttimer) : 15), "porsche");
+        
         // Zeitstempel auf aktuelle Systemzeit setzen
         lastFrameTime = now;
         
@@ -126,6 +127,10 @@ public class Simulation extends JGEngine {
          drawString(("Position: " + Math.round(porsche.pos)+ " m"), xoff + 130, yoff + 30, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.yellow);
          drawString(("Time: " + Math.round(porsche.time)+ " s"), xoff + 0, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.yellow);
          drawString(("ACC: " + Math.round(porsche.acc)+ " m/s2"), xoff + 250, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,14), JGColor.yellow);
+         drawString(("Windwiderstand: " + Math.round(porsche.forceDrag)+ " N"), xoff + 450, yoff + 0, 1, new JGFont("Arial",0,14), JGColor.yellow);
+         drawString(("Antriebskraft: " + Math.round(porsche.forcePropB)+ " N"), xoff + 450, yoff + 30, 1, new JGFont("Arial",0,14), JGColor.yellow);
+         drawString(("Resultierende: " + Math.round(porsche.force)+ " N"), xoff + 450, yoff + 60, 1, new JGFont("Arial", JGFont.BOLD,14), JGColor.yellow);
+         
          
          // Gas
          drawString(("Level: "), xoff + 520, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD,10), JGColor.yellow);
@@ -137,17 +142,60 @@ public class Simulation extends JGEngine {
          drawLine( xoff + 500, yoff + 60, xoff + 700, yoff + 60, 13, JGColor.white);
          drawLine( xoff + 500, yoff + 60, xoff + (porsche.brakeProplevel * 200) + 500, yoff + 60, 13, new JGColor(0x9,0x69,0xA2));
           
+                  // ABS Info wenn gerade eingreift
+         if (porsche.absOn) {
+            drawString("ABS aktiv", pfWidth() / 2, 230, 0, new JGFont("Tahoma", JGFont.BOLD, 24), JGColor.red);
+         }
+         // ASR Info wenn gerade eingreift
+         if (porsche.asrOn) {
+            drawString("ASR aktiv", pfWidth() / 2, 230, 0, new JGFont("Tahoma", JGFont.BOLD, 24), JGColor.red);
+         }
+         
+         
          // Steuerungsinfo
-         drawString(("Gas: Up // Bremse: Shift // ABS 1(an)/2(aus)  // ASR 3(an)/4(aus)  //  "), 170, 560, 0, new JGFont("Arial", JGFont.BOLD,10), JGColor.yellow);
+         drawString(("Gas: Right // Bremse: Left // ABS 1(an)/2(aus)  // ASR 3(an)/4(aus)  //  "), 170, 560, 0, new JGFont("Arial", JGFont.BOLD,10), JGColor.yellow);
          
          
          // ABS Status
          int xoff2 = 900, yoff2 = 560;
          
-         drawLine( xoff2 - 57 , yoff2, xoff2 - 46, yoff2, 15, ((porsche.getGround() == 1.0) ? c_dry : ((porsche.getGround() == 0.7) ? c_wet : c_icy)));
-         drawString("Road: " + ((porsche.getGround() == 1.0) ? "DRY" : ((porsche.getGround() == 0.7) ? "WET" : "ICY")), xoff2 - 95, yoff2 - 4, -1, new JGFont("Arial", JGFont.BOLD,11), JGColor.black);
+         drawLine( xoff2 - 57 , yoff2, xoff2 - 46, yoff2, 15, ((porsche.ground == 1.0) ? c_dry : ((porsche.ground == 0.7) ? c_wet : c_icy)));
+         drawString("Road: " + ((porsche.ground == 1.0) ? "DRY" : ((porsche.ground == 0.7) ? "WET" : "ICY")), xoff2 - 95, yoff2 - 4, -1, new JGFont("Arial", JGFont.BOLD,11), JGColor.black);
          
          drawString("ABS:", xoff2 - 22, yoff2 - 4, 0, new JGFont("Arial", JGFont.BOLD,11), JGColor.black);
+         
+         if (porsche.absState) {
+            drawLine( xoff2 , yoff2, xoff2 + 10, yoff2, 15, c_green); 
+            drawString("An", xoff2 + 5, yoff2 - 4, 0, new JGFont("Arial", JGFont.PLAIN,10), JGColor.white);
+         } else {
+            drawLine( xoff2 , yoff2, xoff2 + 10, yoff2, 15, c_red); 
+            drawString("Aus", xoff2 + 5, yoff2 - 4, 0, new JGFont("Arial", JGFont.PLAIN,10), JGColor.white);
+         }
+          
+         // ASR Status
+         int xoff3 = 960, yoff3 = 560;
+         drawString("ASR:", xoff3 - 22, yoff3 - 4, 0, new JGFont("Arial", JGFont.BOLD,11), JGColor.black);
+         
+         if (porsche.asrState) {
+            drawLine( xoff3 , yoff3, xoff3 + 10, yoff3, 15, c_green); 
+            drawString("An", xoff3 + 5, yoff3 - 4, 0, new JGFont("Arial", JGFont.PLAIN,10), JGColor.white);
+         } else {
+            drawLine( xoff3 , yoff3, xoff3 + 10, yoff3, 15, c_red); 
+            drawString("Aus", xoff3 + 5, yoff3 - 4, 0, new JGFont("Arial", JGFont.PLAIN,10), JGColor.white);
+         
+         }
+         
+         if (tilde == 0 && (porsche.errorgas || porsche.errorbrems)) {
+             tilde = System.currentTimeMillis();
+         }    
+         
+         if (tilde != 0 && System.currentTimeMillis() - tilde > 2000) {
+             tilde = 0;
+         } else if (tilde != 0) {
+             drawString("Abflug!", pfWidth() / 2, 250, 0, new JGFont("Tahoma", 1, 28), JGColor.white);
+             drawString("Auto wird noch " + ((System.currentTimeMillis() - tilde) / 1000) + " Sekunden abgefangen", pfWidth() / 2, 300, 0, new JGFont("Tahoma", 1, 14), JGColor.white);
+         }
+         
          
     }   
     
