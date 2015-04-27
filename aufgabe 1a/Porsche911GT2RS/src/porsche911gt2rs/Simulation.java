@@ -195,7 +195,7 @@ public class Simulation extends JGEngine {
              drawString("Abflug!", pfWidth() / 2, 250, 0, new JGFont("Tahoma", 1, 28), JGColor.white);
              drawString("Auto wird noch " + ((System.currentTimeMillis() - tilde) / 1000) + " Sekunden abgefangen", pfWidth() / 2, 300, 0, new JGFont("Tahoma", 1, 14), JGColor.white);
          }
-         
+         drawImage(porsche.pos % pfWidth(),255, "porsche");
          
     }   
     

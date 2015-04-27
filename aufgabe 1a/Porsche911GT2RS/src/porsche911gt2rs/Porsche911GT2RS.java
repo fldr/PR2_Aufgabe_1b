@@ -4,7 +4,7 @@ package porsche911gt2rs;
 import jgame.*;
 
 
-public class Porsche911GT2RS extends JGObject{
+public class Porsche911GT2RS{
 
     //---------------constans---------------
     public static final double KM_IN_M = 1000.0;
@@ -62,11 +62,11 @@ public class Porsche911GT2RS extends JGObject{
     
     public Porsche911GT2RS(double mass, double powerPropMax, double speedMax, double ground) {
         
-        super("Porsche911GT2RS", true, 0, 255, 1, "porsche");
+        //super("Porsche911GT2RS", true, 0, 255, 1, "porsche");
         
         this.mass = mass; // kg
-        this.powerPropMax = powerPropMax * 1000; // W
-        this.speedMax = speedMax * KM_PER_HOUR_IN_M_PER_SEC; // m/s
+        this.powerPropMax = powerPropMax * 1000.0; // W
+        this.speedMax = speedMax / KM_PER_HOUR_IN_M_PER_SEC; // m/s
         this.ground = ground;
         
         traction = ACCEARTH * ground; // beschl * factor = beschl
@@ -88,7 +88,7 @@ public class Porsche911GT2RS extends JGObject{
     public void set(double time, double pos, double speed, double proplevel, double brakeProplevel) {
         this.time = time;
         this.pos = pos;
-        this.speed = speed;
+        this.speed = speed / KM_PER_HOUR_IN_M_PER_SEC;
         this.proplevel = proplevel;
         this.brakeProplevel = brakeProplevel;
     }
