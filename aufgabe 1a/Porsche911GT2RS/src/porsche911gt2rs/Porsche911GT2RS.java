@@ -69,8 +69,8 @@ public class Porsche911GT2RS {
     //WET = 0.7; // Bodenbehaftung
     //ICE = 0.3; // Bodenbehaftung
     public void setGround(double ground) {
-        this.traction = ground; // Bodenbehaftung ändern
-        //traction = ACCEARTH * ground;
+        //this.traction = ground; // Bodenbehaftung ändern
+        this.traction = ACCEARTH * ground;
         forcePropMax = mass * traction; // Maximale Vortriebskraft[kg*m/s^-2]
     }
 
@@ -92,25 +92,29 @@ public class Porsche911GT2RS {
 //        acc = force / mass;
 //        speed = speed + (acc * deltaTime);
 //        pos = pos + (speed * deltaTime);
-        switch (currentState) {
-            case STEHEN:
-                acc = 0.0;
-                speed = 0.0;
-                if(proplevel > 0.0){ nextState = CarState.FAHREN; }
-                break;
+//        switch (currentState) {
+//            case STEHEN:
+//                acc = 0.0;
+//                speed = 0.0;
+//                if(proplevel > 0.0){ nextState = CarState.FAHREN; }
+//                break;
+//
+//            case FAHREN:
+//                if (this.speed < SPEEDMIN) {
+//                    this.speed = SPEEDMIN;
+//                }
+//                acc = force / mass;
+//                speed = speed + (acc * deltaTime);
+//                pos = pos + (speed * deltaTime);
+//                break;
+//                
+//            default:break;    
+//        }
 
-            case FAHREN:
-                if (this.speed < SPEEDMIN) {
-                    this.speed = SPEEDMIN;
-                }
-                acc = force / mass;
-                speed = speed + (acc * deltaTime);
-                pos = pos + (speed * deltaTime);
-                break;
-                
-            default:break;    
-        }
-
+         acc = force / mass;
+        speed = speed + (acc * deltaTime);
+        pos = pos + (speed * deltaTime);
+        
         forceDrag = (dragConst * (speed * speed) * Math.signum(-speed));
 
         powerProp = proplevel * powerPropMax;

@@ -29,7 +29,7 @@ public class Simulation extends JGEngine {
 
     @Override
     public void initCanvas() {
-        this.setCanvasSettings(1600, 580, 1, 1, JGColor.black, JGColor.white, null);
+        this.setCanvasSettings(640, 480, 1, 1, JGColor.black, JGColor.white, null);
     }
 
     @Override
@@ -123,26 +123,26 @@ public class Simulation extends JGEngine {
         final JGColor c_icy = new JGColor(0xaa, 0xd7, 0xff);
 
         // Offset für HUD (position)
-        int xoff = 100, yoff = 20;
+        int xoff = 50, yoff = 10;
 
         // HUD Info
-        drawString(("Speed: " + Math.round(porsche.speed * 3.6) + " km/h"), xoff + 130, yoff + 0, JGFont.BOLD, new JGFont("Arial", 1, 14), JGColor.yellow);
-        drawString(("Position: " + Math.round(porsche.pos) + " m"), xoff + 130, yoff + 30, 1, new JGFont("Arial", JGFont.BOLD, 14), JGColor.yellow);
-        drawString(("Time: " + Math.round(porsche.time) + " s"), xoff + 0, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD, 14), JGColor.yellow);
-        drawString(("ACC: " + Math.round(porsche.acc) + " m/s2"), xoff + 250, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD, 14), JGColor.yellow);
-        drawString(("Windwiderstand: " + Math.round(porsche.forceDrag) + " N"), xoff + 450, yoff + 0, 1, new JGFont("Arial", 0, 14), JGColor.yellow);
-        drawString(("Antriebskraft: " + Math.round(porsche.forcePropB) + " N"), xoff + 450, yoff + 30, 1, new JGFont("Arial", 0, 14), JGColor.yellow);
-        drawString(("Resultierende: " + Math.round(porsche.force) + " N"), xoff + 450, yoff + 60, 1, new JGFont("Arial", JGFont.BOLD, 14), JGColor.yellow);
+        drawString(("Speed: " + Math.round(porsche.speed * 3.6) + " km/h"), xoff + 100, yoff + 0, JGFont.BOLD, new JGFont("Arial", 1, 12), JGColor.yellow);
+        drawString(("Position: " + Math.round(porsche.pos) + " m"), xoff + 100, yoff + 30, 1, new JGFont("Arial", JGFont.BOLD, 12), JGColor.yellow);
+        drawString(("Time: " + Math.round(porsche.time) + " s"), xoff + 0, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD, 12), JGColor.yellow);
+        drawString(("ACC: " + Math.round(porsche.acc) + " m/s2"), xoff + 190, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD, 12), JGColor.yellow);
+        drawString(("Windwiderstand: " + Math.round(porsche.forceDrag) + " N"), xoff + 350, yoff + 0, 1, new JGFont("Arial", 0, 12), JGColor.yellow);
+        drawString(("Antriebskraft: " + Math.round(porsche.forcePropB) + " N"), xoff + 350, yoff + 30, 1, new JGFont("Arial", 0, 12), JGColor.yellow);
+        drawString(("Resultierende: " + Math.round(porsche.force) + " N"), xoff + 350, yoff + 60, 1, new JGFont("Arial", JGFont.BOLD, 12), JGColor.yellow);
 
         // Gas
         drawString(("Level: "), xoff + 520, yoff + 0, 1, new JGFont("Arial", JGFont.BOLD, 10), JGColor.yellow);
         drawLine(xoff + 500, yoff + 20, xoff + 700, yoff + 20, 13, JGColor.white);
-        drawLine(xoff + 500, yoff + 20, xoff + (porsche.proplevel * 200) + 500, yoff + 20, 13, new JGColor(0x95, 0x00, 0x2B));
+        drawLine(xoff + 500, yoff + 20, xoff + (porsche.proplevel * 100) + 500, yoff + 20, 13, new JGColor(0x95, 0x00, 0x2B));
 
         // Bremse
         drawString(("Brake: "), xoff + 520, yoff + 40, 1, new JGFont("Arial", JGFont.BOLD, 10), JGColor.yellow);
         drawLine(xoff + 500, yoff + 60, xoff + 700, yoff + 60, 13, JGColor.white);
-        drawLine(xoff + 500, yoff + 60, xoff + (porsche.brakeProplevel * 200) + 500, yoff + 60, 13, new JGColor(0x9, 0x69, 0xA2));
+        drawLine(xoff + 500, yoff + 60, xoff + (porsche.brakeProplevel * 100) + 500, yoff + 60, 13, new JGColor(0x9, 0x69, 0xA2));
 
         // ABS Info wenn gerade eingreift
         if (porsche.absOn) {

@@ -3,6 +3,6 @@ import jgame.JGPoint;
 
 public class Main {
   public static void main(String[] args) {
-    Simulation simulation = new Simulation(new JGPoint(1600, 580));
+    Simulation simulation = new Simulation(new JGPoint(640,480));
   }
 }
