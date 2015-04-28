@@ -5,4 +5,4 @@ public class Main {
   public static void main(String[] args) {
     Simulation simulation = new Simulation(new JGPoint(1000, 580));
   }
-}
+}peter
