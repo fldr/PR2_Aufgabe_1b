@@ -1,4 +1,4 @@
-//package porsche911gt2rs;
+package porsche911gt2rs;
 
 import jgame.*;
 import jgame.JGColor;
