@@ -26,32 +26,44 @@ public class Simulation extends JGEngine {
 
     public Simulation(JGPoint window_size) {
         super();
-        this.initEngine(window_size.x, window_size.y);
+        //this.initEngine(window_size.x, window_size.y);
+        this.initEngine(640, 480);
     }
 
     @Override
     public void initCanvas() {
-        this.setCanvasSettings(640, 480, 1, 1, JGColor.black, JGColor.white, null);
+      //  this.setCanvasSettings(640, 480, 1, 1, JGColor.black, JGColor.white, null);
+    setCanvasSettings(40,30,16,16,null,null,null); 
+    
     }
 
      @Override
     public void initGame() {
 
+        setPFSize(80,60);
+		// Set the wrap-around mode to vertical.
+		setPFWrap(
+			false, // horizontal wrap
+			false,  // vertical wrap
+			-10, -10 // shift the center of the view to make objects wrap at
+			       // the right moment (sprite size / 2).
+		);
+        
         // Framerate festlegen
-        setFrameRate(35, 2);
+        setFrameRate(60, 2);
 
         // Media Table Laden
         defineMedia("media.tbl");
 
         // Background
-        JGObject road = new JGObject("Background", true, 0, 0, 1, "background");
+        JGObject road = new JGObject("Background", true, 0, 0, 0, "track_1");
 
 
         // Porsche erstellen und initialisieren
         porsche = new Porsche911GT2RS(1445.0,456.0,330.0,1.0,0.0);
         porsche.reset();
         porsche.x=10;
-        porsche.y=100;
+        porsche.y=105;
        // porsche.powerPropMax=porsche.powerPropMax*1000;
 
         setGameState("Wait");
@@ -68,8 +80,45 @@ public class Simulation extends JGEngine {
         drawString("Press 'ENTER' to start.", pfWidth() / 2, 250, 0, new JGFont("Arial", 1, 25), JGColor.white);
     }
 
+    //Scrolling Offset
+        int xofs=0;
+        int yofs=0;
+    
     public void doFrameSimulation() {
-
+        
+        //Scrolling Offset
+        moveObjects(null,0);
+		// Update the desired view offset according to mouse position.
+		// The X offset is proportional to the mouse position.
+		// The mouse position is a number between 0 and viewWidth.
+		// We scale it to a number between 0 and pfWidth (playfield width).
+		//xofs =  ((int)porsche.x * pfWidth() / 2)/15;
+                xofs =  ((int)porsche.x) ;
+		// the Y offset changes proportional to the offset of the mouse
+		// position from the center of the window.  If the mouse is in the
+		// center, we don't scroll, if it is close to the upper or lower
+		// border of the window, it scrolls quickly in that direction.
+		//yofs += ((int)porsche.y - viewHeight()/2) / 15;
+                yofs = ((int)porsche.y );
+		// Set the view offset.  Note that if our offset is out of the
+		// playfield bounds, the position is clipped so that it is inside.
+		// (this is only relevant for non-wrappable axes; a wrappable
+		// axis is never out of bounds!)
+		setViewOffset(
+			xofs,yofs, // the position within the playfield
+			true       // true means the given position is center of the view,
+			           // false means it is topleft.
+		);
+//        if(porsche.x>320){
+//            xofs=(int)porsche.x-320;
+//        }
+//        else{xofs=0;}
+//        if(porsche.y>240){
+//        yofs=(int)porsche.y-240;
+//        }
+//        else{yofs=0;}
+        
+       
         //tempLenken
         //if (getKey(KeyLeft)) {porsche.carAngle=porsche.carAngle-0.5;}
         
@@ -187,7 +236,7 @@ public class Simulation extends JGEngine {
 
 
          // ABS Status
-         int xoff2 = 640, yoff2 = 560;
+         int xoff2 = 640, yoff2 = 480;
 
         // drawLine( xoff2 - 57 , yoff2, xoff2 - 46, yoff2, 15, ((porsche.ground == 1.0) ? c_dry : ((porsche.ground == 0.7) ? c_wet : c_icy)));
        //  drawString("Road: " + ((porsche.ground == 1.0) ? "DRY" : (porsche.ground == 0.7) ? "WET" : ((porsche.ground == 0.1) ? "ICY")), xoff2 - 95, yoff2 - 4, -1, new JGFont("Arial", JGFont.BOLD,11), JGColor.black);
