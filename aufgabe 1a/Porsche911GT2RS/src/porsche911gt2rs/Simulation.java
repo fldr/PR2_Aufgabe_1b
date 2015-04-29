@@ -33,14 +33,14 @@ public class Simulation extends JGEngine {
     @Override
     public void initCanvas() {
       //  this.setCanvasSettings(640, 480, 1, 1, JGColor.black, JGColor.white, null);
-    setCanvasSettings(40,30,16,16,null,null,null); 
+    setCanvasSettings(30,22,16,16,null,null,null); 
     
     }
 
      @Override
     public void initGame() {
 
-        setPFSize(80,60);
+        setPFSize(120,90);
 		// Set the wrap-around mode to vertical.
 		setPFWrap(
 			false, // horizontal wrap
