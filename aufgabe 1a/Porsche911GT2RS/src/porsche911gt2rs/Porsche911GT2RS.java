@@ -298,6 +298,7 @@ package porsche911gt2rs;
 
 
 import jgame.*;
+import static oracle.jrockit.jfr.events.Bits.intValue;
 
 
 public class Porsche911GT2RS{
@@ -321,6 +322,7 @@ public class Porsche911GT2RS{
     //---------------attributes---------------
     
     public String graphicName;
+    int gfxAngle;
     
     public double time; // [s]
     public double pos; //  [m]
@@ -447,7 +449,7 @@ public class Porsche911GT2RS{
         
         acc = force / mass;
         speed = speed + (acc * deltaTime);
-        pos = pos + (speed * deltaTime);
+        pos = pos + (speed * deltaTime*2.5);
         time = time + deltaTime;
         this.setGraphic();
     }
@@ -460,11 +462,14 @@ public class Porsche911GT2RS{
     
     public void setGraphic()
     {
-       this.carAngle=this.carAngle%360; 
-       if(this.carAngle>=315||this.carAngle<45){this.graphicName="porsche"+1;}
-       if(this.carAngle>=45&&this.carAngle<135){this.graphicName="porsche"+2;}
-       if(this.carAngle>=135&&this.carAngle<225){this.graphicName="porsche"+3;} 
-       if(this.carAngle>=225&&this.carAngle<315){this.graphicName="porsche"+4;}
+       this.carAngle=(this.carAngle%360);
+       this.gfxAngle=intValue(this.carAngle);
+      this.graphicName="car_"+this.gfxAngle;
+      // this.graphicName=Integer.toString(gfxAngle)+"_Car_0";
+//       if(this.carAngle>=315||this.carAngle<45){this.graphicName="porsche"+1;}
+//       if(this.carAngle>=45&&this.carAngle<135){this.graphicName="porsche"+2;}
+//       if(this.carAngle>=135&&this.carAngle<225){this.graphicName="porsche"+3;} 
+//       if(this.carAngle>=225&&this.carAngle<315){this.graphicName="porsche"+4;}
        
         
     }

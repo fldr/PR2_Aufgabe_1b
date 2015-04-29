@@ -1,7 +1,10 @@
 // Howto und Besipiele unter: http://www.13thmonkey.org/~boris/jgame/JGame/tutorial/example3.tbl
-//porsche	-	0	Car_0.png	-
-porsche1	-	0	Car_0.png	-
-porsche2	-	0	CarRed_90.png	-
-porsche3	-	0	Car_180.png	-
-porsche4	-	0	CarRed_270.png	-
-background	-	0	track1.png	-
+car_0 -       0      graphics/0_Car_0.png    -
+porsche	-	0	graphics/0_Car_0.png	-
+//porsche1	-	0	graphics/Car_0.png	-
+//porsche2	-	0	graphics/CarRed_90.png	-
+//porsche3	-	0	graphics/Car_180.png	-
+//porsche4	-	0	graphics/CarRed_270.png	-
+car_0          -       0      graphics/0_Car_0.png    -
+
+background	-	0	graphics/track1.png	-
