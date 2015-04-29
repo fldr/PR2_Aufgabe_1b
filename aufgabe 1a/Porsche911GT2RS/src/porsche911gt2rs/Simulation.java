@@ -50,6 +50,8 @@ public class Simulation extends JGEngine {
         // Porsche erstellen und initialisieren
         porsche = new Porsche911GT2RS(1445.0,456.0,330.0,1.0,0.0);
         porsche.reset();
+        porsche.x=10;
+        porsche.y=100;
        // porsche.powerPropMax=porsche.powerPropMax*1000;
 
         setGameState("Wait");
@@ -69,8 +71,12 @@ public class Simulation extends JGEngine {
     public void doFrameSimulation() {
 
         //tempLenken
-        if (getKey(KeyLeft)) {porsche.carAngle=porsche.carAngle-0.1;}
-        if (getKey(KeyRight)) {porsche.carAngle=porsche.carAngle+0.1;}
+        //if (getKey(KeyLeft)) {porsche.carAngle=porsche.carAngle-0.5;}
+        
+        if (getKey(KeyLeft)) {if(porsche.carAngle<=0){porsche.carAngle=358.0;} else{porsche.carAngle=porsche.carAngle-2;}}
+        
+        
+        if (getKey(KeyRight)) {porsche.carAngle=porsche.carAngle+2;}
         
         
         // Zeitdifferenz berechnen
@@ -145,6 +151,7 @@ public class Simulation extends JGEngine {
          drawString(("ACC: " + Math.round(porsche.acc)+ " m/s2"), xoff + 200, yoff + 0, 1, new JGFont("Arial",JGFont.BOLD,10), JGColor.yellow);
          drawString(("Angle: " + Math.round(porsche.carAngle)+ "°"), xoff + 200, yoff + 15, 1, new JGFont("Arial",JGFont.BOLD,10), JGColor.yellow);
          drawString(("Frame: " + porsche.graphicName), xoff + 200, yoff + 30, 1, new JGFont("Arial",JGFont.BOLD,10), JGColor.yellow);
+         drawString(("X/Y: " + Math.sin(porsche.carAngle)+"/"+Math.cos(porsche.carAngle)), xoff + 200, yoff + 45, 1, new JGFont("Arial",JGFont.BOLD,10), JGColor.yellow);
 
          drawString(("Windwiderstand: " + Math.round(porsche.forceDrag)+ " N"), xoff + 350, yoff + 0, 1, new JGFont("Arial",0,10), JGColor.yellow);
          drawString(("Antriebskraft: " + Math.round(porsche.forcePropB)+ " N"), xoff + 350, yoff + 15, 1, new JGFont("Arial",0,10), JGColor.yellow);
@@ -218,7 +225,7 @@ public class Simulation extends JGEngine {
              drawString("Abflug!", pfWidth() / 2, 250, 0, new JGFont("Tahoma", 1, 28), JGColor.white);
              drawString("Auto wird noch " + ((System.currentTimeMillis() - tilde) / 1000) + " Sekunden abgefangen", pfWidth() / 2, 300, 0, new JGFont("Tahoma", 1, 14), JGColor.white);
          }
-         drawImage(porsche.pos % pfWidth(),255, porsche.graphicName,new JGColor(1.0,1.0,1.0),1,rot,1,true);
+         drawImage(porsche.x % pfWidth(),porsche.y % pfHeight(), porsche.graphicName,new JGColor(1.0,1.0,1.0),1,rot,1,true);
 
 
     }

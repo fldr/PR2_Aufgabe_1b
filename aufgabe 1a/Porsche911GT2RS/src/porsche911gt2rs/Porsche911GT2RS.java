@@ -299,6 +299,7 @@ package porsche911gt2rs;
 
 import jgame.*;
 import static oracle.jrockit.jfr.events.Bits.intValue;
+import java.lang.Math;
 
 
 public class Porsche911GT2RS{
@@ -326,6 +327,10 @@ public class Porsche911GT2RS{
     
     public double time; // [s]
     public double pos; //  [m]
+    
+    public double x,y; //Car position in [m]
+    
+    
     public double carAngle; // [°]
     public double speed; // [m/s]
 
@@ -449,9 +454,27 @@ public class Porsche911GT2RS{
         
         acc = force / mass;
         speed = speed + (acc * deltaTime);
-        pos = pos + (speed * deltaTime*2.5);
+        
+//        x = x +((Math.cos(carAngle))*(speed * (deltaTime*2.5))  );
+//        y = y +((Math.sin(carAngle))*(speed * (deltaTime*2.5))    );
+//        
+        pos =  (speed * deltaTime*2.5);
+        
+        carAngle=(carAngle%360);
+       gfxAngle=intValue(carAngle);
+       graphicName="car"+gfxAngle;
+        
+        
+        x = x+(Math.cos(Math.toRadians(carAngle))*(pos)  );
+        y = y+(Math.sin(Math.toRadians(carAngle))*(pos)  );
+        
+        
         time = time + deltaTime;
-        this.setGraphic();
+        
+        
+     //   this.setGraphic(deltaTime);
+//        this.x = this.x +((Math.cos(this.carAngle))*(speed * (deltaTime*2.5))  );
+//        this.y = this.y +((Math.sin(this.carAngle))*(speed * (deltaTime*2.5))    );
     }
     
 
@@ -460,17 +483,19 @@ public class Porsche911GT2RS{
         return "Porsche911GT2RS{" + time + " Sekunden " + "Pos = " + Math.round(pos) + " m, Speed=" + Math.round(speed * KM_PER_HOUR_IN_M_PER_SEC) + "km/h Force=" + Math.round(force) + ", acc=" + Math.round(acc) + '}';
     }
     
-    public void setGraphic()
+    public void setGraphic(double deltaTime)
     {
        this.carAngle=(this.carAngle%360);
        this.gfxAngle=intValue(this.carAngle);
-      this.graphicName="car_"+this.gfxAngle;
+       this.graphicName="car"+this.gfxAngle;
+     //  this.x = this.x +((Math.cos(this.carAngle))*(speed * (deltaTime*2.5))  );
+      //  this.y = this.y +((Math.sin(this.carAngle))*(speed * (deltaTime*2.5))    );
       // this.graphicName=Integer.toString(gfxAngle)+"_Car_0";
 //       if(this.carAngle>=315||this.carAngle<45){this.graphicName="porsche"+1;}
 //       if(this.carAngle>=45&&this.carAngle<135){this.graphicName="porsche"+2;}
 //       if(this.carAngle>=135&&this.carAngle<225){this.graphicName="porsche"+3;} 
 //       if(this.carAngle>=225&&this.carAngle<315){this.graphicName="porsche"+4;}
-       
+//       
         
     }
 
