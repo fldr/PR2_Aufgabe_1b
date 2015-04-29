@@ -24,7 +24,7 @@ public class Pedal {
             
             timeUnpressed = 0;
             timePressed += deltaTime;
-            level = (timePressed)*maxTimeFactorUp;
+            level = (timePressed/4)*maxTimeFactorUp;
             level = ( level > 1) ? 1 : level;
         
         // Ist gedrückt aber war es nicht
